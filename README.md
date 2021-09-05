@@ -8,10 +8,10 @@
 
 ```bash
 # 树莓派系统更新时区，扩展硬盘，选择语言等操作
-sudo raspi-config
+`sudo raspi-config`
 
 # 安装 git
-sudo apt-get -y install git
+`sudo apt-get -y install git`
 
 # 下载程序到本地
 cd $HOME
