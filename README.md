@@ -1,10 +1,8 @@
 ![Raspberry NOAA](assets/header_1600_v2.png)
 
 
-**根据  jekhokie/raspberry-noaa-v2 分支创建的，根据自己的理解和需求做了改动，不保证你设备可用。**
-
-
-
+# 由  jekhokie/raspberry-noaa-v2 创建
+# 根据自己的理解和需求做了改动，不保证你设备可用。
 
 ```bash
 # 1、树莓派系统更新时区，扩展硬盘，选择语言等操作
@@ -27,8 +25,6 @@ nano config/settings.yml
 ./install_and_upgrade.sh
 ```
 
-
-
 # 分享几个基础测试
 
 1、测试树莓派供电（rtl-fm）接收工作时检查供电问题
@@ -40,8 +36,6 @@ nano config/settings.yml
 ```bash
 vcgencmd get_throttled
 ```
-
-
 2、测试收听FM   104.2更改为本地最强FM频率  树莓派接上音响或者耳机
 ```bash
 rtl_fm -f 104.2M  -g 7.7 -s 200K -r 48000 -| ffplay -f s16le -ar 48000  -showmode 1 -i -
@@ -51,7 +45,6 @@ rtl_fm -f 104.2M  -g 7.7 -s 200K -r 48000 -| ffplay -f s16le -ar 48000  -showmod
 cd /home/pi/raspberry-noaa-v2/scripts/testing
 ./test_reception.sh 104.2
 ```
-
 4、测试PPM
 ```bash
 rtl_test -p 
@@ -62,8 +55,6 @@ rtl_test -p
 ```bash
 /home/pi/raspberry-noaa-v2/scripts/schedule.sh -t -x 
 ```
-
-
 1. Fork the repository to your own GitHub account.
 2. `git clone` your forked repository.
 3. `git checkout -b <my-branch-name>` to create a branch, replacing with your actual branch name.
