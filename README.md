@@ -28,19 +28,6 @@ nano config/settings.yml
 ```
 分享几个自己的测试
 ```bash
-
-#测试收听FM   104.2更改为本地最强FM频率  树莓派接上音响或者耳机
-rtl_fm -f 104.2M  -g 7.7 -s 200K -r 48000 -| ffplay -f s16le -ar 48000  -showmode 1 -i -
-
-#按照自己config/settings.yml 做接收测试
-
-cd /home/pi/raspberry-noaa-v2/scripts/testing
-./test_reception.sh 104.2
-
-#测试PPM
-
-rtl_test -p 
-
 #测试树莓派供电
 #得到一个十六进制数，这个数字反映了和当前系统频率、输入电压等相关的状态信息
 #throttled=0x50005（供电不足）
@@ -49,6 +36,35 @@ rtl_test -p
 #这个数字的第 16 位为 1 的话，表明启动之后曾经发生过输入电压不足的情况；
 
 vcgencmd get_throttled
+
+```
+```bash
+
+#测试收听FM   104.2更改为本地最强FM频率  树莓派接上音响或者耳机
+rtl_fm -f 104.2M  -g 7.7 -s 200K -r 48000 -| ffplay -f s16le -ar 48000  -showmode 1 -i -
+
+```
+```bash
+
+#按照自己config/settings.yml 做接收测试
+
+cd /home/pi/raspberry-noaa-v2/scripts/testing
+./test_reception.sh 104.2
+
+```
+
+```bash
+
+#测试PPM
+
+rtl_test -p 
+
+```
+```bash
+# -t: 更新/重新下载 TLE 文件
+# -x：擦除所有现有的未来预定捕获并重新开始
+
+/home/pi/raspberry-noaa-v2/scripts/schedule.sh -t -x 
 
 ```
 
