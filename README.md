@@ -39,7 +39,7 @@ rtl_fm -f 104.2M  -g 7.7 -s 200K -r 48000 -| ffplay -f s16le -ar 48000  -showmod
 ```
 3、按照自己config/settings.yml 做接收测试
 ```bash
-cd /home/pi/raspberry-noaa-v2/scripts/testing
+cd /home/pi/raspi-noaa-ham/scripts/testing
 ./test_reception.sh 104.2
 ```
 4、测试PPM
@@ -50,7 +50,7 @@ rtl_test -p
 -t: 更新/重新下载 TLE 文件
 -x：擦除所有现有的未来预定捕获并重新开始
 ```bash
-/home/pi/raspberry-noaa-v2/scripts/schedule.sh -t -x 
+/home/pi/raspi-noaa-ham/scripts/schedule.sh -t -x 
 ```
 1. Fork the repository to your own GitHub account.
 2. `git clone` your forked repository.
