@@ -1,43 +1,43 @@
 ---
-#基础台站设置
-#   纬度: 南纬要设置负数
-#   经度: 西经要设置负数
+# 基站配置
+# 纬度：南值是负数
+# 经度：西值为负
 latitude: 37.67 
 longitude: 118.08
 
-# 设置时区(相对于UTC时间）中国默认 8
+# 时区与 UTC 的偏移量（例如，“-5”表示美国东部时间）
 timezone_offset: 8
 
-# NTP服务设置
-#   ntp_server - if you have a local server (e.g. stratum1), you can use this setting
-#        to specify a hostname or ip address to communicate with the ntp server
-ntp_server: ''
+#ntp配置
+# ntp_server -如果你有一个本地服务器（例如stratum1），你可以使用这个设置
+# 指定主机名或IP地址与ntp服务器通信 
+ntp_server: 'ntp1.aliyun.com'
 
-# 测试设置当你运行测试代码的时候的相关 参数
-#   test_gain - gain to use for scanner test scripts
-#   test_sdr_device_id - device ID of the SDR device to be used for scanner test scripts
-#   test_enable_bias_tee - whether to enable bias tee when running scanner test scripts
-#   test_freq_offset - receiver frequency offset (PPM)
+# 运行测试脚本时的测试设置
+# test_gain -用于扫描仪测试脚本的增益
+# test_sdr_device_id -用于扫描仪测试脚本的 SDR 设备的设备 ID
+# test_enable_bias_tee -运行扫描仪测试脚本时是否启用bias tee
+# test_freq_offset -接收器频率偏移（PPM） 
 test_gain: 7.7
 test_sdr_device_id: 0
 test_enable_bias_tee: false
 test_freq_offset: 0
 
-# receiver settings
-#   meteor_receiver - which receiver method to use (either 'rtl_fm' or 'gnuradio')
-#     **WARNING**: 'gnuradio' does not work with certain SDR devices (e.g. it will not currently
-#                  work with a RTL-SDR v3 dongle, as no image will be decoded from the bitstream)
+# 接收器设置
+#meteor_receiver -要使用的接收器方法（'rtl_fm' 或 'gnuradio'）
+# **警告**：'gnuradio' 不适用于某些 SDR 设备（例如，它目前不会
+# 使用 RTL-SDR v3 加密狗，因为不会从比特流中解码图像） 
 meteor_receiver: 'rtl_fm'
 
-# whether to schedule specific orbiting objects for capture
-#   <satellite_name>_schedule - whether to schedule captures for the satellite
-#   <satellite_name>_sdr_device_id - device ID of the SDR device to be used for recording for the satellite
-#   <satellite_name>_freq_offset - receiver frequency offset (PPM) for the satellite capture
-#   <satellite_name>_enable_bias_tee - whether to enable bias tee for the recording of the satellite
-#   <satellite_name>_gain - gain setting for specific satellite captures
-#   <satellite_name>_sun_min_elevation - threshold for sun elevation for specific satellite captures
-#   <satellite_name>_sat_min_elevation - threshold for sat elevation for specific satellite captures
-#   <satellite_name>_memory_threshold - for METEOR satellite, minimum free memory (MB) required to store pass in RAM
+# 是否安排特定的轨道物体进行捕获
+# <satellite_name>_schedule -是否为卫星安排捕获
+# <satellite_name>_sdr_device_id -用于记录卫星的 SDR 设备的设备 ID
+# <satellite_name>_freq_offset -卫星捕获的接收器频率偏移 (PPM)
+# <satellite_name>_enable_bias_tee -是否为记录卫星启用bias tee
+# <satellite_name>_gain -特定卫星捕获的增益设置
+# <satellite_name>_sun_min_elevation -特定卫星捕获的太阳高度阈值
+# <satellite_name>_sat_min_elevation -特定卫星捕获的卫星高程阈值
+# <satellite_name>_memory_threshold -对于 METEOR 卫星，在 RAM 中存储传递所需的最小可用内存 (MB)
 
 noaa_15_schedule: true
 noaa_15_sdr_device_id: 0
@@ -72,48 +72,48 @@ meteor_m2_sun_min_elevation: 0
 meteor_m2_sat_min_elevation: 25
 meteor_m2_memory_threshold: 600
 
-# how many days to schedule passes - note this MUST be an even integer,
-# and the current day counts as "1" - passes will be scheduled until midnight
-# of the `days_to_schedule_passes` final day
+# 计划通过多少天 -注意这必须是一个偶数，
+# 并且当天算作“1” -通行证将被安排到午夜
+# of the `days_to_schedule_passes` 最后一天
 #
-# NOTE: If you want to set this value LOWER than a previously configured
-#       value, you must run the schedule script manually and pass the '-x' switch
-#       after re-running the ./install_and_upgrade.sh script to align the variables:
-#           ./scripts/schedule.sh -x
-days_to_schedule_passes: 7
+# 注意：如果您想将此值设置为低于先前配置的值
+# 值，您必须手动运行调度脚本并传递“-x”开关
+# 重新运行 ./install_and_upgrade.sh 脚本以对齐变量后：
+# ./scripts/schedule.sh -x 
+days_to_schedule_passes: 8
 
-# whether audio files should be deleted after images are created
+#创建图像后是否应删除音频文件
 delete_audio: false
 
-# processing settings
-#   flip_meteor_image - whether the meteor image should be flipped
-#   produce_spectrogram - whether to produce a spectrogram image of the audio recording
-#   noaa_crop_telemetry - whether to crop the left/right telemetry in image captures
-#   image_annotation_location - where to place the annotation in images - valid options are:
-#        NorthWest, North, NorthEast, West, Center, East, SouthWest, South, SouthEast
-#   extend_for_annotation - whether to create a black extension on the north/south location of
-#        the image to place the annotation into (vs. overlaying on the captured data)
-#        (note: this will ONLY work if the image_annotation_location is NOT one of [West|Center|East])
-#   produce_noaa_pristine_image - whether to produce a pristine image (unmodified) for larger
-#        composite-based use cases
-#   produce_noaa_pristine_histogram - whether to produce a histogram of the NOAA pristine image
-#        NOTE: produce_noaa_pristine_image MUST BE ENABLED for the histogram to be produced
-#   produce_polar_az_el_graph - whether to produce a polar graph that shows the pass
-#        azimuth and elevation over the course of the pass, truncated to satellite min elevation
-#   produce_polar_direction_graph - whether to produce a polar graph that shows the pass
-#        direction over the course of the pass, including AOS and LOS
-#   ground_station_location - free-form text for indicating ground station location in image
-#        annotation (leave blank if you wish to exclude the ground station annotation)
-#   antenna_info - free-form text for indicating antenna info in image
-#        annotation (leave blank if you wish to exclude the antenna annotation)
-#   show_sun_elevation - whether to show sun elevation in annotation
-#   show_pass_direction - show which direction the satellite is moving in the image annotation
-#   noaa_daytime_enhancements - list of enhancements to create images using during daytime captures
-#        (note: default value is total list of supported image processors)
-#   noaa_nighttime_enhancements - list of enhancements to create images using during nighttime captures
-#        (note: default value is total list of supported image processors)
-#   noaa_crop_toptobottom - whether to crop the top and bottom noise out of the noaa capture
-#   noaa_interpolate - whether to interpolate and oversample the images (larger images produced)
+# 处理设置
+# flip_meteor_image -是否应该翻转流星图像
+#produce_spectrogram -是否生成录音的频谱图
+# noaa_crop_telemetry -是否在图像捕获中裁剪左/右遥测
+# image_annotation_location -在图像中放置注释的位置 -有效选项是：
+# 西北，北，东北，西，中心，东，西南，南，东南
+#extend_for_annotation -是否在北/南位置创建黑色扩展
+# 放置注释的图像（与覆盖在捕获的数据上）
+#（注意：这仅在 image_annotation_location 不是 [West|Center|East] 之一时才有效）
+#produce_noaa_pristine_image -是否为更大的图像生成原始图像（未修改）
+# 基于复合的用例
+#produce_noaa_pristine_histogram -是否生成 NOAA 原始图像的直方图
+# 注意：必须启用produce_noaa_pristine_image 才能生成直方图
+#produce_polar_az_el_graph -是否生成显示pass的极坐标图
+# 整个过程中的方位角和仰角，截断为卫星最小仰角
+#produce_polar_direction_graph -是否生成显示pass的极坐标图
+# 传递过程中的方向，包括 AOS 和 LOS
+# ground_station_location -用于在图像中指示地面站位置的自由格式文本
+# annotation（如果您希望排除地面站注释，请留空）
+# 天线信息 -用于指示图像中天线信息的自由格式文本
+# annotation（如果您希望排除天线注释，请留空）
+# show_sun_elevation -是否在注释中显示太阳高度
+# show_pass_direction -显示卫星在图像注释中移动的方向
+# noaa_daytime_enhancements -在白天拍摄期间使用的增强功能列表
+#（注意：默认值是支持的图像处理器的总列表）
+# noaa_nighttime_enhancements -在夜间捕获期间使用的增强功能列表
+#（注意：默认值是支持的图像处理器的总列表）
+# noaa_crop_toptobottom -是否从 noaa 捕获中裁剪顶部和底部噪声
+# noaa_interpolate -是否对图像进行插值和过采样（生成较大的图像） 
 flip_meteor_image: true
 produce_spectrogram: false
 noaa_crop_telemetry: false
@@ -123,7 +123,7 @@ produce_noaa_pristine_image: true
 produce_noaa_pristine_histogram: false
 produce_polar_az_el_graph: false
 produce_polar_direction_graph: true
-ground_station_location: '山东'
+ground_station_location: 'Shandong'
 antenna_info: 'Adam-9A4QV__V-Dipole Antenna'
 show_sun_elevation: true
 show_pass_direction: true
@@ -132,30 +132,30 @@ noaa_nighttime_enhancements: 'ZA MCIR HVCT MCIR-precip therm avi'
 noaa_crop_toptobottom: true
 noaa_interpolate: true
 
-# noaa map configurations
+# noaa 地图配置
 # http://usradioguy.com/wp-content/uploads/2020/05/wxtoimgcommand-line.pdf
 #
-# note - colors are in format 0xRRGGBB (only applicable when the
-#        feature is enabled), where:
-#   RR: Red hex value
-#   GG: Green hex value
-#   BB: Blue hex value
-# Colors can alternatively be specified as one of the following:
-#   black, white, gray, light-gray, dark-gray, red, pink dark-red,
-#   light-red, # green, light-green, dark-green, black-green, blue,
-#   light-blue, dark-blue, black-blue, yellow, light-yellow, dark-yellow,
-#   magenta, light-magenta, dark-magenta, cyan, light-cyan, dark-cyan,
-#   orange, dark-orange, purple, lavender, violet, navy, turquoise,
-#   aquamarine, chartreuse, gold, beige, tan, brown, and maroon
+# 注意 -颜色的格式为 0xRRGGBB（仅适用于
+# 功能已启用），其中：
+# RR：红色十六进制值
+# GG：绿色十六进制值
+# BB：蓝色十六进制值
+# 颜色也可以指定为以下之一：
+#黑色、白色、灰色、浅灰色、深灰色、红色、粉红色、深红色、
+#浅红色，#绿色，浅绿色，深绿色，黑绿色，蓝色，
+#浅蓝，深蓝，黑蓝，黄，浅黄，深黄，
+# 洋红色、浅洋红色、深洋红色、青色、浅青色、深青色、
+#橙色，深橙色，紫色，薰衣草，紫罗兰，海军，绿松石，
+# 海蓝宝石、黄绿色、金色、米色、棕褐色、棕色和栗色
 #
-#   noaa_map_crosshair_enable - whether to place a crosshairs on the base station location
-#   noaa_map_crosshair_color - color of base station crosshair
-#   noaa_map_grid_degrees - latitude/longitude lines drawn every grid degrees (default 10.0, 0.0 to disable)
-#   noaa_map_grid_color - color of gridlines for latitude/longitude
-#   noaa_map_country_border_enable - whether to enable country borders in images
-#   noaa_map_country_border_color - color of country borders
-#   noaa_map_state_border_enable - whether to enable state borders in images (Americas only)
-#   noaa_map_state_border_color - color of state borders (Americas only)
+# noaa_map_crosshair_enable -是否在基站位置放置十字准线
+# noaa_map_crosshair_color -基站十字准线的颜色
+# noaa_map_grid_degrees -每个网格度数绘制的纬度/经度线（默认为 10.0，0.0 禁用）
+# noaa_map_grid_color -纬度/经度的网格线颜色
+# noaa_map_country_border_enable -是否在图片中启用国家边界
+# noaa_map_country_border_color -国家边界颜色
+# noaa_map_state_border_enable -是否在图像中启用状态边界（仅限美洲）
+# noaa_map_state_border_color -州边界的颜色（仅限美洲）
 noaa_map_crosshair_enable: true
 noaa_map_crosshair_color: "0xffff00"
 noaa_map_grid_degrees: 10.0
@@ -165,41 +165,41 @@ noaa_map_country_border_color: "0xffff00"
 noaa_map_state_border_enable: true
 noaa_map_state_border_color: "0xffff00"
 
-# settings for thermal map output for NOAA captures
-#   noaa_thermal_temp_overlay - whether to overlay a thermal map for color codes to temperature
-#   noaa_thermal_temp_overlay_location - where to place the thermal map in images - valid options are:
-#        NorthWest, North, NorthEast, West, Center, East, SouthWest, South, SouthEast
+# NOAA 捕获的热图输出设置
+# noaa_thermal_temp_overlay -是否将颜色代码的热图叠加到温度
+# noaa_thermal_temp_overlay_location -在图像中放置热图的位置 -有效选项是：
+# 西北，北，东北，西，中心，东，西南，南，东南 
 noaa_thermal_temp_overlay: true
 noaa_thermal_temp_overlay_location: 'NorthEast'
 
-# locale settings for timezone and language
-#   timezone: see https://www.php.net/manual/en/timezones.php
-#   lang_setting: see the 'webpanel/App/Lang' folder for available
-#                 languages (2-letter filename - e.g. ar, bg, de, en, es, nl, sr)
+# 时区和语言的区域设置
+# 时区：参见 https://www.php.net/manual/en/timezones.php
+# lang_setting：查看“webpanel/App/Lang”文件夹中是否可用
+# 语言（2 个字母的文件名 -例如 ar、bg、cn、de、en、es、nl、sr）
 timezone: Asia/Shanghai
 lang_setting: cn
 
-# web server configuration settings
-#   web_server_name - server name to use for the TLS certs and web endpoint - this MUST be
-#                     resolvable to the IP of this host (if you don't have DNS, simply use
-#                     the IP of the Raspberry Pi host)
-#   enable_non_tls - whether to enable a clear-text web listener (default port 80)
-#   web_port - port to run the web server clear-text (non-encrypted) endpoint on
-#   enable_tls - whether to enable the TLS-encrypted web listener (default port 443)
-#   web_tls_port - port to run the TLS listener on
-#   cert_valid_days - number of days the TLS certificates should be valid for - note that
-#                     you will need to re-install the certificates once this timeline expires
-#   lock_admin_page - whether to require username/password when attempting to access the admin page
-#                     of the webpanel - WARNING: DO NOT SET THIS TO TRUE UNLESS YOU ONLY HAVE A TLS
-#                     ENABLED SITE - SETTING TO TRUE AND RUNNING A CLEARTEXT SITE IS ALMOST CERTAINLY
-#                     ASKING FOR YOUR CREDENTIALS TO BE STOLEN MID-REQUEST
-#   admin_username - username used to access the 'admin' endpoint of the webpanel (WARNING: see 'lock_admin_page' above)
-#   admin_password - password used to access the 'admin' endpoint of the webpanel (WARNING: see 'lock_admin_page' above)
-#                    NOTE: MAKE SURE YOU SET THIS TO SOMETHING REASONABLY COMPLICATED!
-#   web_passes_date_format - format to display the dates in the pass list view - note that this MUST conform to
-#                            https://www.php.net/manual/en/datetime.format.php or else bad things will happen
-#   web_datetime_format - format to display date and time in the web interface for captures - note that this MUST conform to
-#                         https://www.php.net/manual/en/datetime.format.php or else bad things will happen
+# Web 服务器配置设置
+# web_server_name -用于 TLS 证书和 web 端点的服务器名称 -这必须是
+# 可解析到此主机的 IP（如果您没有 DNS，只需使用
+#树莓派主机的IP）
+# enable_non_tls -是否启用明文网络侦听器（默认端口 80）
+# web_port -运行 web 服务器明文（非加密）端点的端口
+# enable_tls -是否启用 TLS 加密的 web 侦听器（默认端口 443）
+# web_tls_port -运行 TLS 侦听器的端口
+# cert_valid_days -TLS 证书应有效的天数 -请注意
+# 一旦此时间表到期，您将需要重新安装证书
+# lock_admin_page -尝试访问管理页面时是否需要用户名/密码
+# webpanel -警告：除非您只有 TLS，否则不要将其设置为 TRUE
+# 启用站点 -设置为真实并运行明文站点几乎是肯定的
+# 请求您的凭据被盗
+# admin_username -用于访问网络面板的“admin”端点的用户名（警告：请参阅上面的“lock_admin_page”）
+# admin_password -用于访问网络面板的“admin”端点的密码（警告：请参阅上面的“lock_admin_page”）
+# 注意：确保您将其设置为合理复杂的内容！
+# web_passes_date_format -在传递列表视图中显示日期的格式 -请注意，这必须符合
+# https://www.php.net/manual/en/datetime.format.php 否则会发生不好的事情
+# web_datetime_format -在 web 界面中显示日期和时间以进行捕获的格式 -请注意，这必须符合
+# https://www.php.net/manual/en/datetime.format.php 否则会发生不好的事情 
 web_server_name: raspberry-noaa.localdomain
 enable_non_tls: true
 web_port: 80
@@ -212,46 +212,46 @@ admin_password: 'admin'
 web_passes_date_format: 'm/d/Y'
 web_datetime_format: 'm/d/Y H:i:s'
 
-# log level for output from scripts
+# 脚本输出的日志级别
 log_level: DEBUG
 
-# whether to enable the satvis visualization for satellite tracking
-# in the passes view - note that this iframe-driven visualization is
-# by default disabled on "extra-small" devices such as phones due to
-# the processing and space requirements
+# 是否启用卫星跟踪的satvis可视化
+# 在 pass 视图中 -请注意，这个 iframe 驱动的可视化是
+# 默认情况下在“超小型”设备（例如手机）上禁用，因为
+# 加工和空间要求
 enable_satvis: false
 
-# whether to enable the image video in the passes view - note that this
-# is by default disabled on "extra-small" devices such as phones due
-# to the processing and space requirements
+# 是否启用pass view中的图片视频——注意这个
+# 默认情况下在“超小型”设备（例如手机）上禁用
+#对加工和空间要求 
 enable_animation: false
 
-# pruning capabilities - must be configured in cron (see documentation)
-#   delete_oldest_n - how many oldest captures to delete on each run
-#   delete_older_than_n - delete all images older than this many days
+# 修剪功能 -必须在 cron 中配置（参见文档）
+# delete_oldest_n -每次运行要删除多少最早的捕获
+# delete_older_than_n -删除所有比这个天数早的图像
 delete_oldest_n: 0
 delete_older_than_n: 31
 
-# operating system configurations
-#   disable_wifi_power_mgmt - if running wireless internet and you want to
-#       disable "sleep" mode of your wifi device (assuming it's wlan0), set
-#       this to true (note: updating this requires a reboot)
-#   disable_at_mail - if you do not want "at" to send mail after job execution
+# 操作系统配置
+# disable_wifi_power_mgmt -如果运行无线互联网并且您想要
+# 禁用 wifi 设备的“睡眠”模式（假设它是 wlan0），设置
+# 这为真（注意：更新这需要重新启动）
+# disable_at_mail -如果您不希望“at”在作业执行后发送邮件
 disable_wifi_power_mgmt: false
 disable_at_mail: true
 
-# push processing settings for sending images elsewhere
-#   * NOTE: Make sure you set up your ~/.msmtprc file before enabling email push!
-#   enable_email_push - whether to send all images to an external email
-#   email_push_address - if enabled, address to send all images to
-#   enable_email_schedule_push - whether to email an image of the nightly-created
-#       pass-list schedule to the email destination
-#   enable_discord_push - whether to push images to a Discord channel
-#   discord_webhook_url - webhook url for the Discord channel
-#   enable_twitter_push - whether to push images to a Twitter feed
-#     * see docs/twitter_push.md for instructions
-#   enable_matrix_push - whether to push images to a Matrix room
-#     * see docs/matrix_push.md for instructions
+# 推送处理设置以将图像发送到别处
+# *注意：确保在启用电子邮件推送之前设置您的 ~/.msmtprc 文件！
+# enable_email_push -是否将所有图像发送到外部电子邮件
+# email_push_address -如果启用，将所有图像发送到的地址
+# enable_email_schedule_push -是否通过电子邮件发送每晚创建的图像
+# 传递列表计划到电子邮件目的地
+# enable_discord_push -是否将图像推送到 Discord 频道
+# discord_webhook_url -Discord 频道的 webhook url
+# enable_twitter_push -是否将图像推送到 Twitter 提要
+# *有关说明，请参阅 docs/twitter_push.md
+# enable_matrix_push -是否将图像推送到矩阵房间
+# *有关说明，请参阅 docs/matrix_push.md 
 enable_email_push: false
 email_push_address: test@ifttt.com
 enable_email_schedule_push: false
