@@ -117,7 +117,7 @@ delete_audio: false
 flip_meteor_image: true
 produce_spectrogram: false
 noaa_crop_telemetry: false
-image_annotation_location: 'NorthWest'
+image_annotation_location: 'Center'
 extend_for_annotation: false
 produce_noaa_pristine_image: true
 produce_noaa_pristine_histogram: false
