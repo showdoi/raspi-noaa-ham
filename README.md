@@ -52,6 +52,7 @@ rtl_test -p
 ```bash
 /home/pi/raspi-noaa-ham/scripts/schedule.sh -t -x 
 ```
+--------------------------------------------------------------------------------------------------
 1. Fork the repository to your own GitHub account.
 2. `git clone` your forked repository.
 3. `git checkout -b <my-branch-name>` to create a branch, replacing with your actual branch name.
