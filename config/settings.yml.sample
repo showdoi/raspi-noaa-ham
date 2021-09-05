@@ -1,0 +1,122 @@
+---
+# base station configurations
+#   latitude: south values are negative
+#   longitude: west values are negative
+latitude: 40.712776
+longitude: -74.005974
+
+# time zone offset from UTC (for example, '-5' for US Eastern)
+timezone_offset: -5
+
+# receiver settings
+#   meteor_receiver - which receiver method to use (either 'rtl_fm' or 'gnuradio')
+#     **WARNING**: 'gnuradio' does not work with certain SDR devices (e.g. it will not currently
+#                  work with a RTL-SDR v3 dongle, as no image will be decoded from the bitstream)
+#   sdr_device_id - which SDR device to use (use rtl_eeprom to see available devices)
+#   enable_bias_tee - driving power to LNA, for example
+#   receiver_gain - receiver gain
+#   receiver_freq_offset - receiver frequency offset (PPM)
+meteor_receiver: 'rtl_fm'
+sdr_device_id: 0
+enable_bias_tee: false
+receiver_gain: 50
+receiver_freq_offset: -6
+
+# whether to schedule specific orbiting objects for capture
+schedule_noaa: true
+schedule_meteor: true
+
+# whether audio files should be deleted after images are created
+delete_audio: false
+
+# processing settings
+#   flip_meteor_image - whether the meteor image should be flipped
+#   produce_spectrogram - whether to produce a spectrogram image of the audio recording
+#   noaa_crop_telemetry - whether to crop the left/right telemetry in image captures
+#   image_annotation_location - where to place the annotation in images - valid options are:
+#        NorthWest, North, NorthEast, West, Center, East, SouthWest, South, SouthEast
+#   produce_noaa_pristine_image - whether to produce a pristine image (unmodified) for larger
+#        composite-based use cases
+flip_meteor_image: true
+produce_spectrogram: true
+noaa_crop_telemetry: false
+image_annotation_location: 'NorthWest'
+produce_noaa_pristine_image: false
+
+# thresholds for scheduling captures - enables avoiding an attempt
+# to capture imagery if objects are lower than these degree elevation thresholds
+sat_min_elevation: 30
+sun_min_elevation: 10
+
+# noaa map configurations
+# http://usradioguy.com/wp-content/uploads/2020/05/wxtoimgcommand-line.pdf
+#
+# note - colors are in format 0xRRGGBB (only applicable when the
+#        feature is enabled), where:
+#   RR: Red hex value
+#   GG: Green hex value
+#   BB: Blue hex value
+# Colors can alternatively be specified as one of the following:
+#   black, white, gray, light-gray, dark-gray, red, pink dark-red,
+#   light-red, # green, light-green, dark-green, black-green, blue,
+#   light-blue, dark-blue, black-blue, yellow, light-yellow, dark-yellow,
+#   magenta, light-magenta, dark-magenta, cyan, light-cyan, dark-cyan,
+#   orange, dark-orange, purple, lavender, violet, navy, turquoise,
+#   aquamarine, chartreuse, gold, beige, tan, brown, and maroon
+#
+#   noaa_map_crosshair_enable - whether to place a crosshairs on the base station location
+#   noaa_map_crosshair_color - color of base station crosshair
+#   noaa_map_grid_degrees - latitude/longitude lines drawn every grid degrees (default 10.0, 0.0 to disable)
+#   noaa_map_grid_color - color of gridlines for latitude/longitude
+noaa_map_crosshair_enable: false
+noaa_map_crosshair_color: "0xffff00"
+noaa_map_grid_degrees: 10.0
+noaa_map_grid_color: "0xff0000"
+
+# locale settings for timezone and language
+#   timezone: see https://www.php.net/manual/en/timezones.php
+#   lang_setting: see the 'webpanel/App/Lang' folder for available
+#                 languages (2-letter filename - e.g. ar, de, en, es, sr)
+timezone: America/New_York
+lang_setting: en
+
+# port to run the webpanel on
+web_port: 80
+
+# log level for output from scripts
+log_level: DEBUG
+
+# whether to enable the satvis visualization for satellite tracking
+# in the passes view - note that this iframe-driven visualization is
+# by default disabled on "extra-small" devices such as phones due to
+# the processing and space requirements
+enable_satvis: true
+
+# pruning capabilities - must be configured in cron (see documentation)
+#   delete_oldest_n - how many oldest captures to delete on each run
+#   delete_older_than_n - delete all images older than this many days
+delete_oldest_n: 0
+delete_older_than_n: 0
+
+# operating system configurations
+#   disable_wifi_power_mgmt - if running wireless internet and you want to
+#       disable "sleep" mode of your wifi device (assuming it's wlan0), set
+#        this to true
+disable_wifi_power_mgmt: false
+
+# push processing settings for sending images elsewhere
+# Email: Send all images to an email address.
+#   NOTE: Make sure you set up your ~/.msmtprc file before enabling email push!
+#   enable_email_push - whether to send all images to an external email
+#   email_push_address - if enabled, address to send all images to
+enable_email_push: false
+email_push_address: test@ifttt.com
+
+# whether to install remote desktop and gui-based tools
+# NOTE: This will install a full desktop environment (PIXEL) alongside VNC in order
+#       to ensure VNC can function, which may or may not have an impact on your Pi
+#       performance and recording/captures. This install will also take several minutes
+#       to complete, so please be patient during the install process.
+#   install_remote_desktop - whether to install PIXEL desktop and VNC
+install_remote_desktop: false
+...

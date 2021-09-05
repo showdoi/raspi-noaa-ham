@@ -1,0 +1,7 @@
+envbash==1.2.0
+ephem==3.7.7.1
+idna==2.8
+numpy==1.18.1
+Pillow==7.1.2
+urllib3==1.26.3
+requests==2.25.1
