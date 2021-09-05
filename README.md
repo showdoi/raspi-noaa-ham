@@ -29,7 +29,7 @@ nano config/settings.yml
 
 
 
-分享几个基础测试
+# 分享几个基础测试
 
 1、测试树莓派供电（rtl-fm）接收工作时检查供电问题
 #得到一个十六进制数，这个数字反映了和当前系统频率、输入电压等相关的状态信息
@@ -43,12 +43,9 @@ vcgencmd get_throttled
 
 
 2、测试收听FM   104.2更改为本地最强FM频率  树莓派接上音响或者耳机
-```bash```bash
+```bash```
 rtl_fm -f 104.2M  -g 7.7 -s 200K -r 48000 -| ffplay -f s16le -ar 48000  -showmode 1 -i -
-
 ```
-
-
 3、按照自己config/settings.yml 做接收测试
 ```bash
 cd /home/pi/raspberry-noaa-v2/scripts/testing
@@ -60,8 +57,8 @@ cd /home/pi/raspberry-noaa-v2/scripts/testing
 rtl_test -p 
 ```
 5、更新卫星列表
-# -t: 更新/重新下载 TLE 文件
-# -x：擦除所有现有的未来预定捕获并重新开始
+-t: 更新/重新下载 TLE 文件
+-x：擦除所有现有的未来预定捕获并重新开始
 ```bash
 /home/pi/raspberry-noaa-v2/scripts/schedule.sh -t -x 
 ```
