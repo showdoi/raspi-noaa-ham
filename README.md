@@ -1,5 +1,11 @@
 ![Raspberry NOAA](assets/header_1600_v2.png)
 
+
+**根据  jekhokie/raspberry-noaa-v2 分支创建的，根绝自己想要的做了改动，不保证你设备可用。**
+
+
+
+
 Looking for support, wanting to talk about new features, or just hang out? Come chat with us on [Discord!](https://discord.gg/A9w68pqBuc)
 
 **_This is a spinoff of the original [raspberry-noaa](https://github.com/reynico/raspberry-noaa) created by Nico - they have
