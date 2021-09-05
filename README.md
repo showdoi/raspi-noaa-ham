@@ -1,7 +1,7 @@
 ![Raspberry NOAA](assets/header_1600_v2.png)
 
 
-**根据  jekhokie/raspberry-noaa-v2 分支创建的，根绝自己的理解和需求做了改动，不保证你设备可用。**
+**根据  jekhokie/raspberry-noaa-v2 分支创建的，根据自己的理解和需求做了改动，不保证你设备可用。**
 
 
 
