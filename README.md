@@ -7,22 +7,23 @@
 
 
 ```bash
-# update os localisation settings
+# 树莓派系统更新时区，扩展硬盘，选择语言等操作
 sudo raspi-config
 
-# install git
+# 安装 git
 sudo apt-get -y install git
 
-# clone repository
+# 下载程序到本地
 cd $HOME
 git clone https://github.com/showdoi/raspi-noaa-ham.git
 cd raspi-noaa-ham
 
-# copy sample settings and update for your install
+# 拷贝模板 sample settings 
+# 编辑改动自己的设置
 cp config/settings.yml.sample config/settings.yml
-vi config/settings.yml
+nano config/settings.yml
 
-# perform install
+# 开始安装和升级程序
 ./install_and_upgrade.sh
 ```
 
