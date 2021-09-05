@@ -45,8 +45,8 @@ sudo apt-get -y install git
 
 # clone repository
 cd $HOME
-git clone https://github.com/jekhokie/raspberry-noaa-v2.git
-cd raspberry-noaa-v2/
+git clone https://github.com/showdoi/raspi-noaa-ham.git
+cd raspi-noaa-ham
 
 # copy sample settings and update for your install
 cp config/settings.yml.sample config/settings.yml
@@ -122,12 +122,12 @@ sudo apt-get -y install git
 
 # clone repository
 cd $HOME
-git clone https://github.com/jekhokie/raspberry-noaa-v2.git
-cd raspberry-noaa-v2/
+git clone https://github.com/showdoi/raspi-noaa-ham.git
+cd raspi-noaa-ham
 
 # copy sample settings and update for your install
 cp config/settings.yml.sample config/settings.yml
-vi config/settings.yml
+nano config/settings.yml
 
 # perform install
 ./install_and_upgrade.sh
@@ -154,7 +154,7 @@ parameters are not within range or of the expected format to help with reducing 
 
 ```bash
 # pull down new code
-cd $HOME/raspberry-noaa-v2/
+cd $HOME/rasp-noaa-ham/
 git pull
 
 # compare settings file:
