@@ -36,7 +36,7 @@ nano config/settings.yml
 ```bash
 vcgencmd get_throttled
 ```
-2、测试收听FM   104.2更改为本地最强FM频率  树莓派接上音响或者耳机
+2、测试收听FM 只更改`104.2M`更改为本地最强FM频率  树莓派接上音响或者耳机
 ```bash
 rtl_fm -f 104.2M  -g 7.7 -s 200K -r 48000 -| ffplay -f s16le -ar 48000  -showmode 1 -i -
 ```
