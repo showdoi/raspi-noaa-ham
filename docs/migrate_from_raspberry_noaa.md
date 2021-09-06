@@ -19,11 +19,11 @@ First, follow the [installation](install.md) document to clone and install V2. B
 process does *not* destroy any of your captures or audio - it sets up a completely different directory structure
 that will scale better over time while maintaining the original directory structure of raspberry-noaa.
 
-Once you've installed raspberry-noaa-v2, perform the following:
+Once you've installed rspi-noaa-ham, perform the following:
 
 ```bash
 # copy the original database from v1 to v2 to retain metadata
-cp $HOME/raspberry-noaa/panel.db $HOME/raspberry-noaa-v2/db/
+cp $HOME/raspberry-noaa/panel.db $HOME/rspi-noaa-ham/db/
 
 # if you have any files in these directories from v1, transfer them using the following:
 cp -rf /var/www/wx/images/* /srv/images/
@@ -31,7 +31,7 @@ cp -rf /var/www/wx/audio/* /srv/audio/noaa/
 cp -rf /var/www/wx/meteor/audio/* /srv/audio/meteor/
 
 # re-run schedule.sh to update the database with the latest passes
-$HOME/raspberry-noaa-v2/scripts/schedule.sh
+$HOME/rspi-noaa-ham/scripts/schedule.sh
 ```
 
 Finally, ensure the original cron job for scheduling is commented out or removed to avoid conflicting
@@ -41,7 +41,7 @@ and place a '#' character at the beginning of the line calling the `schedule.sh`
 
 ## Removing Old Data
 
-If you've run and are satisfied with the raspberry-noaa-v2 framework, feel free to remove existing
+If you've run and are satisfied with the rspi-noaa-ham framework, feel free to remove existing
 resources to keep things clean and save space on existing copies of imagery. Specifically, feel free
 to explore and (if desired) execute the following to remove some of the old content:
 

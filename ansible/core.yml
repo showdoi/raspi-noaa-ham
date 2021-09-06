@@ -1,5 +1,5 @@
 ---
-- name: install raspberry-noaa-v2 core
+- name: install rspi-noaa-ham core
   hosts: core
   connection: local
   gather_facts: no

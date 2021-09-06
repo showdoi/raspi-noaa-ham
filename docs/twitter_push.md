@@ -3,7 +3,7 @@
 In `config/settings.yml`, setting `enable_twitter_push: true` will enable pushing all captured, processed
 images to a Twitter feed. See below headings for the sequence of steps required to enable this functionality.
 
-## Enable Twitter Push for raspberry-noaa-v2
+## Enable Twitter Push for rspi-noaa-ham
 
 First, update your `config/settings.yml` file to set `enable_twitter_push: true`.
 

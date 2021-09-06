@@ -13,7 +13,7 @@ class AdminController extends \Lib\Controller {
     if (Config::LOCK_ADMIN == "true") {
       if (!isset($_SERVER['PHP_AUTH_USER']) ||
           ($_SERVER['PHP_AUTH_USER'] != Config::ADMIN_USER || $_SERVER['PHP_AUTH_PW'] != Config::ADMIN_PASS)) {
-        header('WWW-Authenticate: Basic realm="raspberry-noaa-v2"');
+        header('WWW-Authenticate: Basic realm="rspi-noaa-ham"');
         header('HTTP/1.0 401 Unauthorized');
         echo 'Auth required';
         exit;

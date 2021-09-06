@@ -1,4 +1,4 @@
-/var/log/raspberry-noaa-v2/*.log {
+/var/log/rspi-noaa-ham/*.log {
   missingok
   daily
   rotate 7

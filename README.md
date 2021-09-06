@@ -1,7 +1,7 @@
 ![Raspberry NOAA](assets/header_1600_v2.png)
 
 
-# 根据jekhokie/raspberry-noaa-v2 源码更改创建
+# 根据jekhokie/rspi-noaa-ham 源码更改创建
 # 根据自己的理解和需求做了改动，不保证你设备可用。
 
 ```bash
@@ -58,11 +58,11 @@ rtl_test -p
 3. `git checkout -b <my-branch-name>` to create a branch, replacing with your actual branch name.
 4. Do some awesome feature development or bug fixes, committing to the branch regularly.
 5. `git push origin <my-branch-name>` to push your branch to your forked repository.
-6. Head back to the upstream `jekhokie/raspberry-noaa-v2` repository and submit a pull request using your branch from your forked repository.
+6. Head back to the upstream `jekhokie/rspi-noaa-ham` repository and submit a pull request using your branch from your forked repository.
 7. Provide really good details on the development you've done within the branch, and answer any questions asked/address feedback.
 8. Profit when you see your pull request merged to the upstream master and used by the community!
 
-Make sure you keep your forked repository up to date with the upstream `jekhokie/raspberry-noaa-v2` master branch as this will make
+Make sure you keep your forked repository up to date with the upstream `jekhokie/rspi-noaa-ham` master branch as this will make
 development and addressing merge conflicts MUCH easier in the long run.
 
 Happy coding (and receiving)!

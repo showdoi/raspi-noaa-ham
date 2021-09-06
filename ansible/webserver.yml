@@ -1,5 +1,5 @@
 ---
-- name: install raspberry-noaa-v2 webpanel
+- name: install rspi-noaa-ham webpanel
   hosts: webserver
   connection: local
   gather_facts: no

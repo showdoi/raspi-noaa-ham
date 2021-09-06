@@ -10,7 +10,7 @@ The `at` jobs log their output and you will receive a linux mail in the `pi` use
 results after the pass and processing completes. Use the `mail` application on the command line to view the mail
 messages and investigate the log outputs for any indications of errors.
 
-In addition, all detailed log output is now captured in the directory `/var/log/raspberry-noaa-v2/` as well - check
+In addition, all detailed log output is now captured in the directory `/var/log/rspi-noaa-ham/` as well - check
 the `output.log` files in this directory for detailed capture and processing information!
 
 # USB Access Permission
@@ -37,7 +37,7 @@ script that can be used to perform broadcast FM capture, allowing for tuning and
 Raspberry Pi and perform the following:
 
 ```bash
-cd $HOME/raspberry-noaa-v2/
+cd $HOME/rspi-noaa-ham/
 
 # specify a frequency to use with the script
 ./scripts/testing/test_reception.sh 90.3
@@ -71,7 +71,7 @@ whats floating around.
 ```bash
 cd $HOME
 
-raspberry-noaa-v2/scripts/testing/scan_for.sh 5h
+rspi-noaa-ham/scripts/testing/scan_for.sh 5h
 ```
 
 This will scan a range for five hours and produce a heatmap waterfall image in your current working directory afterwards.
@@ -199,9 +199,9 @@ SDR devices (see your device official documentation).
 
 Below are some useful commands in a more summary fashion:
 
-* Edit the main configuration file: `nano $HOME/raspberry-noaa-v2/config/settings.yml`
+* Edit the main configuration file: `nano $HOME/rspi-noaa-ham/config/settings.yml`
 * View the generated configuration (do not edit this one): `less ~/.noaa-v2.conf`
-* Read the main log file: `less /var/log/raspberry-noaa-v2/output.log`
+* Read the main log file: `less /var/log/rspi-noaa-ham/output.log`
 * List the scheduled passes: `atq`
 * Cancel a pass: `atrm <job_id>`
 

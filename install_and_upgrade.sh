@@ -29,8 +29,8 @@ if [ $EUID -eq 0 ]; then
 fi
 
 # verify the repo exists as expected in the home directory
-if [ ! -e "$HOME/raspberry-noaa-v2" ]; then
-  die "Please clone https://github.com/jekhokie/raspberry-noaa-v2 to your home directory"
+if [ ! -e "$HOME/rspi-noaa-ham" ]; then
+  die "Please clone https://github.com/jekhokie/rspi-noaa-ham to your home directory"
 fi
 
 # check if this is a new install or an upgrade based on modprobe settings
@@ -56,7 +56,7 @@ else
 fi
 
 log_running "Installing Python dependencies..."
-sudo python3 -m pip install -r $HOME/raspberry-noaa-v2/requirements.txt
+sudo python3 -m pip install -r $HOME/rspi-noaa-ham/requirements.txt
 if [ $? -eq 0 ]; then
   log_done "  Successfully aligned required Python packages!"
 else
@@ -92,7 +92,7 @@ else
   die "  No settings file detected - please copy config/settings.yml.sample to config/settings.yml and edit for your environment"
 fi
 
-log_running "Running Ansible to install and/or update your raspberry-noaa-v2..."
+log_running "Running Ansible to install and/or update your rspi-noaa-ham..."
 ansible-playbook -i ansible/hosts --extra-vars "@config/settings.yml" ansible/site.yml
 if [ $? -eq 0 ]; then
   log_done "  Ansible apply complete!"
@@ -142,7 +142,7 @@ echo ""
 echo "-------------------------------------------------------------------------------"
 log_finished "CONGRATULATIONS!"
 echo ""
-log_finished "raspberry-noaa-v2 has been successfully installed/upgraded!"
+log_finished "rspi-noaa-ham has been successfully installed/upgraded!"
 echo ""
 log_finished "You can view the webpanel updates by visiting the URL(s) listed in the"
 log_finished "'output web server url' and 'output web server tls url' play outputs above."

@@ -3,7 +3,7 @@
 available_langs: [ ar, de, en, es, sr ]
 
 # root git clone directory (where functionality exists)
-noaa_home: "/home/pi/raspberry-noaa-v2"
+noaa_home: "/home/pi/rspi-noaa-ham"
 
 # database file
 db_file: "{{ noaa_home }}/db/panel.db"
@@ -24,7 +24,7 @@ noaa_animation_output: "{{ videos_output }}/RollingAnimation.mp4"
 ramfs_path: "/var/ramfs"
 
 # log output file
-log_file: "/var/log/raspberry-noaa-v2/output.log"
+log_file: "/var/log/rspi-noaa-ham/output.log"
 
 # TLS self-signed certs
 tls_cert: /etc/ssl/certs/local_server.crt

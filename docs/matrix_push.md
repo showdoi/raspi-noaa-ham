@@ -3,7 +3,7 @@
 In `config/settings.yml`, setting `enable_matrix_push: true` will enable pushing all captured, processed
 images to a Matrix room. See below headings for the sequence of steps required to enable this functionality.
 
-## Enable Matrix Push for raspberry-noaa-v2
+## Enable Matrix Push for rspi-noaa-ham
 
 First, update your `config/settings.yml` file to set `enable_matrix_push: true`.
 
