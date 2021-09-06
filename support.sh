@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Purpose: Output environmental information about the installed environment
-#          to aid with support requests via GitHub, Discord, etc.
+# 目的：输出安装环境的环境信息
+# 通过 GitHub、Discord 等帮助处理支持请求。
 #
 # Example:
 #   ./support.sh
