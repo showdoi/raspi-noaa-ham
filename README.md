@@ -1,7 +1,7 @@
 ![Raspberry NOAA](assets/header_1600_v2.png)
 
 
-# 根据jekhokie/rspi-noaa-ham 源码更改创建
+# 根据jekhokie/raspberry-noaa-v2 源码更改创建
 # 根据自己的理解和需求做了改动，不保证你设备可用。
 
 ```bash
