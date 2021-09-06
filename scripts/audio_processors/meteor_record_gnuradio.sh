@@ -2,9 +2,9 @@
 #
 # Purpose: Record Meteor-M audio via gnuradio to a bitstream file.
 #
-# Inputs:
-#   1. capture_time: time (in seconds) for length capture
-#   2. out_s_file: fully-qualified filename for output bitstream file, including '.s' extension
+# 输入：
+# 1. capture_time: 长度捕获的时间（以秒为单位）
+# 2. out_s_file: 输出比特流文件的全限定文件名，包括“.s”扩展名
 #
 # Example (record meteor audio for 15 seconds, output to /srv/audio/meteor/METEORM2.s):
 #   ./meteor_record_gnuradio.sh 15 /srv/audio/meteor/METEORM2.s
