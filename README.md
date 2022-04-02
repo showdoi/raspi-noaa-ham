@@ -53,16 +53,6 @@ rtl_test -p
 /home/pi/raspi-noaa-ham/scripts/schedule.sh -t -x 
 ```
 --------------------------------------------------------------------------------------------------
-1. Fork the repository to your own GitHub account.
-2. `git clone` your forked repository.
-3. `git checkout -b <my-branch-name>` to create a branch, replacing with your actual branch name.
-4. Do some awesome feature development or bug fixes, committing to the branch regularly.
-5. `git push origin <my-branch-name>` to push your branch to your forked repository.
-6. Head back to the upstream `jekhokie/rspi-noaa-ham` repository and submit a pull request using your branch from your forked repository.
-7. Provide really good details on the development you've done within the branch, and answer any questions asked/address feedback.
-8. Profit when you see your pull request merged to the upstream master and used by the community!
+1. 新增业余卫星中继下行音频接收录音包含（ISS_FM_RPT 音频录音 新增so-50音频录音）
+2. 新增ISS_sstv解码
 
-Make sure you keep your forked repository up to date with the upstream `jekhokie/rspi-noaa-ham` master branch as this will make
-development and addressing merge conflicts MUCH easier in the long run.
-
-Happy coding (and receiving)!
