@@ -14,12 +14,12 @@
 . "$HOME/.noaa-v2.conf"
 . "$NOAA_HOME/scripts/common.sh"
 
-# TLE data files
+# 星历数据文件
 WEATHER_TXT="${NOAA_HOME}/tmp/weather.txt"
 AMATEUR_TXT="${NOAA_HOME}/tmp/amateur.txt"
 TLE_OUTPUT="${NOAA_HOME}/tmp/orbit.tle"
 
-# check if TLE file should be updated
+# 检查星历是否需要更新
 update_tle=0
 wipe_existing=0
 while getopts ":tx" opt; do
@@ -58,7 +58,7 @@ if [ "${update_tle}" == "1" ]; then
     log "Scheduler resolved TLE endpoint in ${counter} seconds" "INFO"
   fi
 
-  # get the txt files for orbit information
+  # 从 orbit 下载星历文件
   log "Downloading new TLE files from source" "INFO"
   wget -r "http://${tle_addr}/NORAD/elements/weather.txt" -O "${WEATHER_TXT}" >> $NOAA_LOG 2>&1
   wget -r "http://${tle_addr}/NORAD/elements/amateur.txt" -O "${AMATEUR_TXT}" >> $NOAA_LOG 2>&1
@@ -73,6 +73,8 @@ if [ "${update_tle}" == "1" ]; then
   grep "NOAA 18" $WEATHER_TXT -A 2 >> $TLE_OUTPUT
   grep "NOAA 19" $WEATHER_TXT -A 2 >> $TLE_OUTPUT
   grep "METEOR-M 2" $WEATHER_TXT -A 2 >> $TLE_OUTPUT
+  #创建业余卫星计划
+  #grep "iss" $AMATEUR_TXT -A 2 >> $TLE_OUTPUT
 elif [ ! -f $WEATHER_TXT ] || [ ! -f $AMATEUR_TXT ] || [ ! -f $TLE_OUTPUT ]; then
   log "TLE update not specified '-t' but no TLE files present - please re-run with '-t'" "INFO"
   exit 1
@@ -116,29 +118,29 @@ else
     exit
   else
     start_time_ms=$(($latest_scheduled_ms + 60))
-    log "Scheduling starting at ${start_time_ms} ms through ${end_time_ms} ms..." "INFO"
+    log "订阅开始日期  ${start_time_ms} ms 至 ${end_time_ms} ms..." "INFO"
   fi
 fi
 
 # create schedules to call respective receive scripts
-log "Scheduling new capture jobs..." "INFO"
+log "安排新的卫星接收任务..." "INFO"
 if [ "$NOAA_15_SCHEDULE" == "true" ]; then
-  log "Scheduling NOAA 15 captures..." "INFO"
+  log "拿捏 NOAA 15 气象卫星..." "INFO"
   $NOAA_HOME/scripts/schedule_captures.sh "NOAA 15" "receive_noaa.sh" $TLE_OUTPUT $start_time_ms $end_time_ms >> $NOAA_LOG 2>&1
 fi
 if [ "$NOAA_18_SCHEDULE" == "true" ]; then
-  log "Scheduling NOAA 18 captures..." "INFO"
+  log "拿捏 NOAA 18 气象卫星..." "INFO"
   $NOAA_HOME/scripts/schedule_captures.sh "NOAA 18" "receive_noaa.sh" $TLE_OUTPUT $start_time_ms $end_time_ms >> $NOAA_LOG 2>&1
 fi
 if [ "$NOAA_19_SCHEDULE" == "true" ]; then
-  log "Scheduling NOAA 19 captures..." "INFO"
+  log "拿捏 NOAA 19 气象卫星..." "INFO"
   $NOAA_HOME/scripts/schedule_captures.sh "NOAA 19" "receive_noaa.sh" $TLE_OUTPUT $start_time_ms $end_time_ms >> $NOAA_LOG 2>&1
 fi
 if [ "$METEOR_M2_SCHEDULE" == "true" ]; then
-  log "Scheduling Meteor-M 2 captures..." "INFO"
+  log "拿捏 Meteor-M 2 气象卫星..." "INFO"
   $NOAA_HOME/scripts/schedule_captures.sh "METEOR-M 2" "receive_meteor.sh" $TLE_OUTPUT $start_time_ms $end_time_ms >> $NOAA_LOG 2>&1
 fi
-log "Done scheduling jobs!" "INFO"
+log "恭喜~把这些卫星数据拿捏,祝接收顺利~ 73~ --DE BI4JGM !" "INFO"
 
 if [ "${ENABLE_EMAIL_SCHEDULE_PUSH}" == "true" ]; then
   # create annotation to send as subject for email
